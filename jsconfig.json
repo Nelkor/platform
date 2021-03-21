@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./*"],
+      "@helpers/*": ["./modules/helpers/*"],
+      "@resources/*": ["./modules/resources/*"],
+      "@layout/*": ["./modules/layout/*"],
+      "@games/*": ["./modules/games/*"],
+      "@net/*": ["./modules/net/*"],
+      "@root/*": ["./modules/root/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}
