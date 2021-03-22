@@ -1,0 +1,11 @@
+.lang-switcher {
+  display: flex;
+  flex-direction: column;
+  width: 140px;
+  padding: 8px;
+
+  span {
+    text-align: center;
+    padding-bottom: 8px;
+  }
+}

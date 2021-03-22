@@ -2,3 +2,9 @@
 
 @import '~@layout/style/layout';
 @import '~@root/style/root';
+
+html {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: $color-main;
+}

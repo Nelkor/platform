@@ -26,3 +26,5 @@ createServer((req, res) => {
   res.write(JSON.stringify(dictionaries[key][lang]))
   res.end()
 }).listen(port)
+
+console.log('dictionaries server started')

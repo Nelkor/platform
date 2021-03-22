@@ -8,6 +8,7 @@
       "@layout/*": ["./modules/layout/*"],
       "@games/*": ["./modules/games/*"],
       "@net/*": ["./modules/net/*"],
+      "@plugins/*": ["./modules/plugins/*"],
       "@root/*": ["./modules/root/*"]
     }
   },

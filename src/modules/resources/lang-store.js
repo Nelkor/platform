@@ -49,5 +49,16 @@ export default {
 
       return state.dictionaries[lang][key].title || 'Error: 3'
     },
+    text: state => (fullKey, options = {}) => {
+      const [key, phrase] = fullKey.split('/')
+
+      let str = state.dictionaries[state.currentLang][key][phrase]
+
+      Object.entries(options).forEach(([searchVal, replaceVal]) => {
+        str = str.replaceAll(`\${${searchVal}}`, replaceVal)
+      })
+
+      return str
+    },
   },
 }
