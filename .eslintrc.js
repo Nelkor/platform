@@ -19,6 +19,8 @@ module.exports = {
   rules: {
     'no-console': 'warn',
     'no-debugger': 'warn',
+    'no-else-return': 'error',
+    'no-return-await': 'error',
     'eqeqeq': ['error', 'always'],
     'indent': ['error', 2, { SwitchCase: 1 }],
     'camelcase': 'error',
