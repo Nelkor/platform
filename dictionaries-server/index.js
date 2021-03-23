@@ -8,23 +8,29 @@ createServer((req, res) => {
   const { url } = req
   const [pathString] = url.split('?')
 
-  const [key, lang] = pathString
+  const keys = pathString
     .split('/', 4)
     .slice(2)
     .filter(Boolean)
 
-  if (!key || !lang || !dictionaries[key]) {
+  const lang = keys.pop()
+
+  if (!dictionaries[lang] || keys.some(key => !dictionaries[lang][key])) {
     res.end()
 
     return
   }
 
-  // TODO: если в этом key нет перевода на lang,
-  // выдать английскую версию.
+  const result = keys.reduce((acc, cur) => {
+    acc[cur] = dictionaries[lang][cur]
+
+    return acc
+  }, {})
 
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
-  res.write(JSON.stringify(dictionaries[key][lang]))
+  res.write(JSON.stringify(result))
   res.end()
 }).listen(port)
 
+// eslint-disable-next-line no-console
 console.log('dictionaries server started')

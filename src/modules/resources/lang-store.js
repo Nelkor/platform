@@ -8,12 +8,12 @@ export default {
     dictionaries: {},
   },
   mutations: {
-    setDictionary(state, { lang, key, dictionary }) {
+    setDictionaries(state, { lang, dictionaries }) {
       const langDictionary = state.dictionaries[lang] || {}
 
       state.dictionaries = {
         ...state.dictionaries,
-        [lang]: { ...langDictionary, [key]: dictionary },
+        [lang]: { ...langDictionary, ...dictionaries },
       }
     },
     setCurrentLang(state, value) {
@@ -24,10 +24,10 @@ export default {
     },
   },
   actions: {
-    async loadDictionary(ctx, { lang, key }) {
-      const dictionary = await getDictionary(lang, key)
+    async loadDictionaries(ctx, { lang, keys }) {
+      const dictionaries = await getDictionary(lang, keys)
 
-      ctx.commit('setDictionary', { lang, key, dictionary })
+      ctx.commit('setDictionaries', { lang, dictionaries })
     },
   },
   getters: {
@@ -52,7 +52,16 @@ export default {
     text: state => (fullKey, options = {}) => {
       const [key, phrase] = fullKey.split('/')
 
-      let str = state.dictionaries[state.currentLang][key][phrase]
+      // Загружен ли словарь нового языка
+      const haveChangingFor = state.changingFor
+        && state.dictionaries[state.changingFor]
+        && state.dictionaries[state.changingFor][key]
+
+      // Если загружен словарь нового языка, берём из него
+      // Иначе из текущего (текущий должен быть загружен всегда)
+      let str = haveChangingFor
+        ? state.dictionaries[state.changingFor][key][phrase]
+        : state.dictionaries[state.currentLang][key][phrase]
 
       Object.entries(options).forEach(([searchVal, replaceVal]) => {
         str = str.replaceAll(`\${${searchVal}}`, replaceVal)

@@ -1,6 +1,6 @@
 import store from '@/store'
 
-import { getCurrentView } from '@helpers/app-state'
+import { getCurrentDictionaries, getCurrentView } from '@helpers/app-state'
 
 import { languages, dirByLang } from './languages'
 
@@ -28,12 +28,8 @@ export const getInitialLang = () => {
   return Object.keys(languages)[0]
 }
 
-const loadDictionary = (lang, key) => store
-  .dispatch('lang/loadDictionary', { lang, key })
-
 export const changeLang = async lang => {
   const { currentLang } = store.state.lang
-  const key = getCurrentView() || basicKey
 
   if (!languages[lang]) {
     throw 'invalid language'
@@ -45,11 +41,12 @@ export const changeLang = async lang => {
 
   store.commit('lang/setChangingFor', lang)
 
-  const keysToLoad = [key, key !== basicKey && basicKey]
-    .filter(Boolean)
+  const keys = [...getCurrentDictionaries(), basicKey]
     .filter(k => !store.getters['lang/doesKeyExist'](k, lang))
 
-  await Promise.all(keysToLoad.map(k => loadDictionary(lang, k)))
+  if (keys.length) {
+    await store.dispatch('lang/loadDictionaries', { lang, keys })
+  }
 
   localStorage.setItem(lsLangKey, lang)
 
@@ -59,5 +56,7 @@ export const changeLang = async lang => {
   html.setAttribute('lang', lang)
   html.setAttribute('dir', dirByLang(lang))
 
-  title.innerText = store.getters['lang/title'](key)
+  // TODO это действие будет выполняться не только при смене языка,
+  // но также и при смене View. Вынести куда-нибудь и использовать оттуда.
+  title.innerText = store.getters['lang/title'](getCurrentView() || basicKey)
 }

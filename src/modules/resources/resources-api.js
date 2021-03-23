@@ -1,5 +1,5 @@
-export const getDictionary = async (lang, key) => {
-  const result = await fetch(`/dictionary/${key}/${lang}`)
+export const getDictionary = async (lang, keys) => {
+  const result = await fetch(`/dictionary/${keys.join('/')}/${lang}`)
 
   return result.json()
 }
