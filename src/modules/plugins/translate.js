@@ -1,4 +1,4 @@
-import store from '@/store'
+import store from '@plugins/store'
 
 export const T = store.getters['lang/text']
 

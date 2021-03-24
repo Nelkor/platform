@@ -9,7 +9,7 @@
       "@games/*": ["./modules/games/*"],
       "@net/*": ["./modules/net/*"],
       "@plugins/*": ["./modules/plugins/*"],
-      "@root/*": ["./modules/root/*"]
+      "@pages/*": ["./modules/pages/*"]
     }
   },
   "include": ["src/**/*"]

@@ -1,4 +1,4 @@
-import store from '@/store'
+import store from '@plugins/store'
 
 import { getCurrentDictionaries, getCurrentView } from '@helpers/app-state'
 

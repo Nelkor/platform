@@ -1,13 +1,14 @@
 import Vue from 'vue'
 
 import { preloadBasicResources } from '@resources/preload-basic'
+
 import { pluginT } from '@plugins/translate'
+import router from '@plugins/router'
+import store from '@plugins/store'
 
 import './main.scss'
 
 import App from './App'
-import router from './router'
-import store from './store'
 
 Vue.config.productionTip = false
 
