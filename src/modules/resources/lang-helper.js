@@ -28,6 +28,10 @@ export const getInitialLang = () => {
   return Object.keys(languages)[0]
 }
 
+export const setTitle = () => {
+  title.innerText = store.getters['lang/title'](getCurrentView() || basicKey)
+}
+
 export const changeLang = async lang => {
   const { currentLang } = store.state.lang
 
@@ -56,7 +60,5 @@ export const changeLang = async lang => {
   html.setAttribute('lang', lang)
   html.setAttribute('dir', dirByLang(lang))
 
-  // TODO это действие будет выполняться не только при смене языка,
-  // но также и при смене View. Вынести куда-нибудь и использовать оттуда.
-  title.innerText = store.getters['lang/title'](getCurrentView() || basicKey)
+  setTitle()
 }

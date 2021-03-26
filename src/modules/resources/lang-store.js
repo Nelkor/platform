@@ -25,6 +25,10 @@ export default {
   },
   actions: {
     async loadDictionaries(ctx, { lang, keys }) {
+      if (!lang) {
+        lang = ctx.state.changingFor || ctx.state.currentLang
+      }
+
       const dictionaries = await getDictionary(lang, keys)
 
       ctx.commit('setDictionaries', { lang, dictionaries })
@@ -47,7 +51,7 @@ export default {
         return 'Error: 2'
       }
 
-      return state.dictionaries[lang][key].title || 'Error: 3'
+      return state.dictionaries[lang][key].title || '...'
     },
     text: state => (fullKey, options = {}) => {
       const [key, phrase] = fullKey.split('/')

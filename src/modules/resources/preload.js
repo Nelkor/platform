@@ -1,3 +1,8 @@
+import store from '@plugins/store'
+import { setCurrentDictionaries, setCurrentView } from '@helpers/app-state'
+
+import { setTitle } from './lang-helper'
+
 const loadedAssets = new Map
 
 const createImage = src => new Promise((resolve, reject) => {
@@ -24,26 +29,36 @@ const addAudio = (acc, { name, audio }) => {
 
 export const loadView = async ({
   component,
+  name,
   images = [],
   sounds = {},
   popups = {},
   shaders = {},
   dictionaries = [],
 }) => {
-  const key = component.name
-
-  if (loadedAssets.has(key)) {
+  if (loadedAssets.has(name)) {
     return
   }
+
+  dictionaries.push(name)
+
+  setCurrentView(name)
+  setCurrentDictionaries(dictionaries)
 
   const imagesPromises = Promise.all(images.map(createImage))
   const soundsPromises = Promise.all(Object.entries(sounds).map(createAudio))
 
-  const [pix, audios] = await Promise.all([imagesPromises, soundsPromises])
+  const [pix, audios] = await Promise.all([
+    imagesPromises,
+    soundsPromises,
+    store.dispatch('lang/loadDictionaries', { keys: dictionaries }),
+  ])
+
+  setTitle()
 
   const audioSet = audios.reduce(addAudio, Object.create(null))
 
-  loadedAssets.set(key, { pix, audioSet, popups, shaders, dictionaries })
+  loadedAssets.set(name, { pix, audioSet, popups, shaders })
 
   return component
 }

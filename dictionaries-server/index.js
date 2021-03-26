@@ -3,14 +3,16 @@ const { createServer } = require('http')
 const dictionaries = require('./dictionaries')
 
 const port = 4937
+const maxNesting = 8
+const pathPrefix = 2
 
 createServer((req, res) => {
   const { url } = req
   const [pathString] = url.split('?')
 
   const keys = pathString
-    .split('/', 4)
-    .slice(2)
+    .split('/', maxNesting)
+    .slice(pathPrefix)
     .filter(Boolean)
 
   const lang = keys.pop()
