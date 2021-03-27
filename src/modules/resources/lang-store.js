@@ -36,12 +36,12 @@ export default {
   },
   getters: {
     doesKeyExist: state => (key, customLang = null) => {
-      const lang = customLang || state.currentLang
+      const lang = customLang || state.changingFor || state.currentLang
 
       return Boolean(state.dictionaries[lang] && state.dictionaries[lang][key])
     },
     title: state => (key, customLang = null) => {
-      const lang = customLang || state.currentLang
+      const lang = customLang || state.changingFor || state.currentLang
 
       if (!state.dictionaries[lang]) {
         return 'Error: 1'
@@ -51,7 +51,7 @@ export default {
         return 'Error: 2'
       }
 
-      return state.dictionaries[lang][key].title || '...'
+      return state.dictionaries[lang][key].title || ''
     },
     text: state => (fullKey, options = {}) => {
       const [key, phrase] = fullKey.split('/')

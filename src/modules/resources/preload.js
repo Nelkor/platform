@@ -36,14 +36,26 @@ export const loadView = async ({
   shaders = {},
   dictionaries = [],
 }) => {
-  if (loadedAssets.has(name)) {
-    return
-  }
-
   dictionaries.push(name)
 
   setCurrentView(name)
   setCurrentDictionaries(dictionaries)
+
+  if (loadedAssets.has(name)) {
+    // TODO переделать
+    // Если для словарей не загружен актуальный язык, загружаем его
+    const notLoadDictionaries = dictionaries
+      .filter(key => !store.getters['lang/doesKeyExist'](key))
+
+    if (notLoadDictionaries.length) {
+      await store
+        .dispatch('lang/loadDictionaries', { keys: notLoadDictionaries })
+    }
+
+    setTitle()
+
+    return component
+  }
 
   const imagesPromises = Promise.all(images.map(createImage))
   const soundsPromises = Promise.all(Object.entries(sounds).map(createAudio))

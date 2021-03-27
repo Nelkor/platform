@@ -8,6 +8,8 @@
       "@layout/*": ["./modules/layout/*"],
       "@games/*": ["./modules/games/*"],
       "@net/*": ["./modules/net/*"],
+      "@ui/*": ["./modules/ui/*"],
+      "@popup/*": ["./modules/popup/*"],
       "@plugins/*": ["./modules/plugins/*"],
       "@pages/*": ["./modules/pages/*"]
     }

@@ -1,0 +1,37 @@
+.about-view {
+  .pix {
+    display: flex;
+  }
+
+  .pic {
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+  }
+
+  .pic-1 {
+    background-image: url(./images/chess-desk.jpg);
+  }
+
+  .pic-2 {
+    background-image: url(./images/road.jpg);
+  }
+
+  .pic-3 {
+    background-image: url(./images/tempest-double.png);
+  }
+
+  .controls {
+    padding-top: 16px;
+
+    button {
+      margin: 0 8px;
+      padding: 8px 16px;
+    }
+  }
+}
+
+.about-popup {
+  background-color: whitesmoke;
+  padding: 24px;
+}

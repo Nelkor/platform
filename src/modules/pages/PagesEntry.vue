@@ -1,14 +1,21 @@
 <template>
-  <div class="router-entry">
+  <div class="pages-entry">
     <component :is="component"/>
+
+    <WaitLoad :class="{ hidden: component }"/>
   </div>
 </template>
 
 <script>
 import { loadView } from '@resources/preload'
 
+import WaitLoad from '@ui/preloader/WaitLoad'
+
 export default {
   name: 'PagesEntry',
+  components: {
+    WaitLoad,
+  },
   data() {
     return {
       component: null,

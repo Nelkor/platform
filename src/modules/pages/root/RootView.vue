@@ -1,5 +1,5 @@
 <template>
-  <div class="app-root">
+  <div class="p16 app-root">
     <h2>{{ $T('root/your-attention') }}</h2>
     <p>{{ $T('root/little-johnny-joke') }}</p>
   </div>
