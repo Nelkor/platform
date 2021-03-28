@@ -1,7 +1,7 @@
 <template>
   <div class="about-popup">
-    <h2>YaaY!</h2>
-    <p>yay</p>
+    <div class="photo"/>
+    <h2>{{ $T('about/hello') }}</h2>
   </div>
 </template>
 

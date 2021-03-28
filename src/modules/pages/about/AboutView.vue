@@ -13,7 +13,7 @@
       <button @click="clickSound">{{ $T('about/click') }}</button>
       <button @click="playMusic">{{ $T('about/play-music') }}</button>
       <button @click="stopMusic">{{ $T('about/stop-music') }}</button>
-      <button @click="$showPopup('about/AboutPopup')">YaaY</button>
+      <button @click="showAboutPopup">{{ $T('about/click-me') }}</button>
     </div>
   </div>
 </template>
@@ -33,6 +33,9 @@ export default {
     stopMusic() {
       getSound('about', 'scan').pause()
       getSound('about', 'scan').currentTime = 0
+    },
+    showAboutPopup() {
+      this.$showPopup('about/AboutPopup')
     },
   },
 }

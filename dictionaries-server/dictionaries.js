@@ -18,6 +18,8 @@ module.exports = {
       'click': 'Клик',
       'play-music': 'Играть музыку',
       'stop-music': 'Выключить музыку',
+      'hello': 'Привет!',
+      'click-me': 'Нажми меня',
     },
     games: {
       'title': 'Игры',
@@ -45,6 +47,8 @@ module.exports = {
       'click': 'Click',
       'play-music': 'Play music',
       'stop-music': 'Stop music',
+      'hello': 'Hello!',
+      'click-me': 'Click me',
     },
     games: {
       'title': 'Games',
@@ -71,6 +75,8 @@ module.exports = {
       'click': 'انقر',
       'play-music': 'تشغيل الموسيقى',
       'stop-music': 'توقف عن الموسيقى',
+      'hello': 'أهلا!',
+      'click-me': 'انقر فوق لي',
     },
     games: {
       'title': 'ألعاب',
@@ -97,6 +103,8 @@ module.exports = {
       'click': 'נְקִישָׁה',
       'play-music': 'נגן מוסיקה',
       'stop-music': 'עצור מוזיקה',
+      'hello': 'שלום!',
+      'click-me': 'לחץ עלי',
     },
     games: {
       'title': 'משחקים',
@@ -123,6 +131,8 @@ module.exports = {
       'click': 'クリック',
       'play-music': '音楽を再生',
       'stop-music': '音楽を止めろ',
+      'hello': 'こんにちは！',
+      'click-me': '私をクリックしてください',
     },
     games: {
       'title': 'ゲーム',

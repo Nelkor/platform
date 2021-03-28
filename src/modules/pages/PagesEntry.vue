@@ -36,10 +36,15 @@ export default {
   },
   methods: {
     registerPage() {
+      this.component = null
+
+      this.$store.commit('layout/setLinksBlocked', true)
+
       import('@pages/' + this.view + '/index.js')
         .then(async view => {
-          this.component = null
           this.component = await loadView(view)
+
+          this.$store.commit('layout/setLinksBlocked', false)
         })
         .catch(() => {
           this.$router.replace('/')
